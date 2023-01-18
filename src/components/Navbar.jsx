@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Link } from "@chakra-ui/react";
+import { Flex, Link, Box } from "@chakra-ui/react";
+import CartWidget from "./CartWidget";
 
 const data = ["Home", "Coffee", "Equipment", "Machines"];
 
@@ -25,6 +26,7 @@ const Navbar = () => {
           {item}
         </Link>
       ))}
+      <CartWidget />
     </Flex>
   );
 };
