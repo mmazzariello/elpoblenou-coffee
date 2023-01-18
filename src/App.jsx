@@ -1,8 +1,14 @@
-import * as React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import React from "react";
+import { Box } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
-  return <ChakraProvider></ChakraProvider>;
+  return (
+    <Box>
+      <Navbar />
+    </Box>
+  );
 }
 
 export default App;
