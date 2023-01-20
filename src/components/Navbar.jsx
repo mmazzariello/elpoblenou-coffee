@@ -1,8 +1,10 @@
 import React from "react";
-import { Flex, Link, Box } from "@chakra-ui/react";
+import { Flex, Link, Image } from "@chakra-ui/react";
+import imgUrl from "./../assets/icon.jpg";
+
 import CartWidget from "./CartWidget";
 
-const data = ["Home", "Coffee", "Equipment", "Machines"];
+const data = ["Coffee", "Equipment", "Machines"];
 
 const Navbar = () => {
   return (
@@ -15,6 +17,13 @@ const Navbar = () => {
       borderBottom="1px"
       borderColor="gray.200"
     >
+      <Link
+        _hover={{
+          opacity: 0.6,
+        }}
+      >
+        <Image boxSize="40px" src={imgUrl} alt="Logo" />
+      </Link>
       {data.map((item, i) => (
         <Link
           key={i}

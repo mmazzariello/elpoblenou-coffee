@@ -4,15 +4,15 @@ import { IoMdCart } from "react-icons/io";
 
 const CartWidget = () => {
   return (
-    <Flex align="center">
-      <Link
-        _hover={{
-          color: "gray.500",
-        }}
-      >
-        <Icon as={IoMdCart} fontSize="2xl" />
-      </Link>
-    </Flex>
+    <Link
+      _hover={{
+        color: "gray.500",
+      }}
+    >
+      <Flex align="center">
+        <Icon as={IoMdCart} fontSize="2xl" opacity="0.8" />
+      </Flex>
+    </Link>
   );
 };
 
