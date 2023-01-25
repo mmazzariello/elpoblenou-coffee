@@ -2,13 +2,12 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
-import "./App.css";
 
 function App() {
   return (
     <Box>
       <Navbar />
-      <ItemListContainer greeting={"Specialty coffee  in just one click"} />
+      <ItemListContainer greeting={"Specialty coffee in just one click"} />
     </Box>
   );
 }
