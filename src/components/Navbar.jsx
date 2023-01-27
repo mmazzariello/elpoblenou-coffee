@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Link, Image } from "@chakra-ui/react";
 import imgUrl from "./../assets/icon.jpg";
-
 import CartWidget from "./CartWidget";
 
 const data = ["Coffee", "Equipment", "Machines"];
