@@ -10,7 +10,7 @@ const CartWidget = () => {
       }}
     >
       <Flex align="center">
-        <Icon as={IoMdCart} fontSize="2xl" opacity="0.8" />
+        <Icon as={IoMdCart} fontSize="xl" />
       </Flex>
     </Link>
   );
