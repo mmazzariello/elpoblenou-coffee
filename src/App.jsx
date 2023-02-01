@@ -5,7 +5,7 @@ import ItemListContainer from "./components/ItemListContainer";
 
 function App() {
   return (
-    <Box>
+    <Box style={{ height: "100%" }}>
       <Navbar />
       <ItemListContainer greeting={"Specialty coffee in just one click"} />
     </Box>

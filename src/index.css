@@ -10,7 +10,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: red;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,9 +25,12 @@ html {
 
 body {
   min-height: 100%;
-  height: 100%;
 }
 
 #root {
   height: 100%;
+}
+
+.sidebar-position {
+  z-index: 2;
 }

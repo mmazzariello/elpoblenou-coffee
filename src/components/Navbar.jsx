@@ -60,7 +60,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden absolute bg-white w-full shadow">
+          <Disclosure.Panel className="sm:hidden absolute bg-white w-full shadow sidebar-position">
             <div className="space-y-1 pt-2 pb-4">
               {data.map((item, i) => (
                 <Disclosure.Button
