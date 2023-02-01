@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Button } from "@chakra-ui/react";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(0);
@@ -13,15 +13,26 @@ const ItemCount = ({ stock, initial, onAdd }) => {
       border="1px"
       borderColor="gray.200"
       borderRadius="3xl"
-      p="1"
     >
-      <Box as="button" _hover={{ color: "gray.400" }} mx="4">
+      <Button
+        as="button"
+        colorScheme="transparent"
+        color={"gray.700"}
+        mx="4"
+        isDisabled={count === 0}
+      >
         -
-      </Box>
+      </Button>
       <p className="text-sm text-gray-700">{count}</p>
-      <Box as="button" _hover={{ color: "gray.400" }} mx="4">
+      <Button
+        as="button"
+        colorScheme="transparent"
+        color={"gray.700"}
+        mx="4"
+        isDisabled={stock === 0}
+      >
         +
-      </Box>
+      </Button>
     </Flex>
   );
 };

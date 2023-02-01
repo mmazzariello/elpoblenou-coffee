@@ -34,3 +34,7 @@ body {
 .sidebar-position {
   z-index: 2;
 }
+
+.test {
+  border: 2px solid red;
+}
