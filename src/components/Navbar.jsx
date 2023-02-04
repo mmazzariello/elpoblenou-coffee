@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Link } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Image, Box } from "@chakra-ui/react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
@@ -31,11 +32,18 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link
+                    to="/"
                     _hover={{
                       opacity: 0.6,
                     }}
                   >
-                    <Image boxSize="40px" src={imgUrl} alt="Logo" />
+                    <Box
+                      _hover={{
+                        opacity: 0.6,
+                      }}
+                    >
+                      <Image boxSize="40px" src={imgUrl} alt="Logo" />
+                    </Box>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
