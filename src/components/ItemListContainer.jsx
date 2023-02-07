@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
   const [productsList, setProductsList] = useState([]);
+  const { category } = useParams();
+
+  console.log("categoryContainer", category);
 
   useEffect(() => {
     showProducts()
@@ -17,7 +21,7 @@ const ItemListContainer = ({ greeting }) => {
 
   const products = [
     {
-      id: "1",
+      id: 1,
       image:
         "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       name: "Product 1",
@@ -27,7 +31,7 @@ const ItemListContainer = ({ greeting }) => {
       stock: 2,
     },
     {
-      id: "2",
+      id: 2,
       image:
         "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       name: "Product 2",
@@ -37,7 +41,7 @@ const ItemListContainer = ({ greeting }) => {
       stock: 0,
     },
     {
-      id: "3",
+      id: 3,
       image:
         "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       name: "Product 3",
@@ -47,7 +51,7 @@ const ItemListContainer = ({ greeting }) => {
       stock: 2,
     },
     {
-      id: "4",
+      id: 4,
       image:
         "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       name: "Product 4",
@@ -57,7 +61,7 @@ const ItemListContainer = ({ greeting }) => {
       stock: 2,
     },
     {
-      id: "5",
+      id: 5,
       image:
         "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
       name: "Product 5",
@@ -82,16 +86,35 @@ const ItemListContainer = ({ greeting }) => {
 
   //FILTER
 
-  console.log("productsList", productsList);
+  // console.log("productsList", productsList);
 
-  return (
-    <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
-      <Text fontSize="lg" color="gray.800">
-        {greeting}
-      </Text>
-      <ItemList products={products} />
-    </Box>
-  );
+  if (category === undefined) {
+    return (
+      <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
+        <Text fontSize="lg" color="gray.800">
+          {greeting}
+        </Text>
+        <ItemList products={products} />
+      </Box>
+    );
+  } else {
+    const categoriesFilter = products.filter(
+      (product) => product.category === category
+    );
+
+    return (
+      <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
+        <Text fontSize="lg" color="gray.800">
+          {greeting}
+        </Text>
+        {categoriesFilter ? (
+          <ItemList products={categoriesFilter} />
+        ) : (
+          <ItemList products={products} />
+        )}
+      </Box>
+    );
+  }
 };
 
 export default ItemListContainer;

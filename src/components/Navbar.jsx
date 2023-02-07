@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Image, Box } from "@chakra-ui/react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
 import imgUrl from "./../assets/icon.jpg";
+import { useParams } from "react-router-dom";
 
 const data = ["Coffee", "Equipment", "Machines"];
 
@@ -13,6 +14,12 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { categoryId } = useParams();
+
+  console.log("data", data);
+
+  console.log("categoryNav", categoryId);
+
   return (
     <Disclosure as="nav" className="bg-white shadow w-full relative">
       {({ open }) => (
@@ -46,14 +53,19 @@ export default function Navbar() {
                     </Box>
                   </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <div className="hidden sm:ml-6 sm:flex sm:space-x-8 items-center">
                   {data.map((item, i) => (
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    >
-                      {item}
-                    </a>
+                    <NavLink to={`/category/${item}`}>
+                      <div
+                        className="text-sm
+                        font-medium
+                        text-gray-500
+                        hover:border-gray-300
+                        hover:text-gray-700"
+                      >
+                        {item}
+                      </div>
+                    </NavLink>
                   ))}
                 </div>
               </div>
