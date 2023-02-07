@@ -24,7 +24,7 @@ function App() {
               <ItemListContainer greeting="Specialty coffee in just one click" />
             }
           />
-          <Route path="/item/:category" element={<ItemDetailContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
         </Routes>
       </Box>
     </BrowserRouter>

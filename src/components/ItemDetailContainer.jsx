@@ -40,9 +40,11 @@ function classNames(...classes) {
 }
 
 export default function ItemDetailContainer() {
-  const { category } = useParams();
+  const { id } = useParams();
 
-  console.log("details", category);
+  console.log("id", id);
+
+  console.log("details", id);
 
   return (
     <div className="bg-white">

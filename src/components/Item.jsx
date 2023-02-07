@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import ItemCount from "./ItemCount";
 
-const Item = ({ id, image, name, description, stock, price, category }) => {
-  console.log("id", id);
-
+const Item = ({ id, image, name, stock, price, category }) => {
   return (
     <NavLink to={`item/${id}`}>
       <div
@@ -23,7 +21,7 @@ const Item = ({ id, image, name, description, stock, price, category }) => {
           </div>
           <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
             <p className="mt-1 text-sm text-gray-500 text-left">
-              {description}
+              Category: {category}
             </p>
             {stock ? (
               <p className="mt-1 text-sm text-green-500 text-left">

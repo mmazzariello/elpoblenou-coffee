@@ -7,8 +7,6 @@ const ItemListContainer = ({ greeting }) => {
   const [productsList, setProductsList] = useState([]);
   const { category } = useParams();
 
-  console.log("categoryContainer", category);
-
   useEffect(() => {
     showProducts()
       .then((res) => {
@@ -84,17 +82,13 @@ const ItemListContainer = ({ greeting }) => {
     });
   };
 
-  //FILTER
-
-  // console.log("productsList", productsList);
-
   if (category === undefined) {
     return (
       <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
         <Text fontSize="lg" color="gray.800">
           {greeting}
         </Text>
-        <ItemList products={products} />
+        <ItemList products={productsList} />
       </Box>
     );
   } else {
@@ -110,7 +104,7 @@ const ItemListContainer = ({ greeting }) => {
         {categoriesFilter ? (
           <ItemList products={categoriesFilter} />
         ) : (
-          <ItemList products={products} />
+          <ItemList products={productsList} />
         )}
       </Box>
     );

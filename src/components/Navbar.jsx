@@ -16,9 +16,9 @@ function classNames(...classes) {
 export default function Navbar() {
   const { categoryId } = useParams();
 
-  console.log("data", data);
-
-  console.log("categoryNav", categoryId);
+  let activeStyle = {
+    opacity: 0.4,
+  };
 
   return (
     <Disclosure as="nav" className="bg-white shadow w-full relative">
@@ -38,11 +38,14 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link
+                  <NavLink
                     to="/"
                     _hover={{
                       opacity: 0.6,
                     }}
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
                   >
                     <Box
                       _hover={{
@@ -51,11 +54,16 @@ export default function Navbar() {
                     >
                       <Image boxSize="40px" src={imgUrl} alt="Logo" />
                     </Box>
-                  </Link>
+                  </NavLink>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8 items-center">
                   {data.map((item, i) => (
-                    <NavLink to={`/category/${item}`}>
+                    <NavLink
+                      to={`/category/${item}`}
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
                       <div
                         className="text-sm
                         font-medium
@@ -83,13 +91,18 @@ export default function Navbar() {
           <Disclosure.Panel className="sm:hidden absolute bg-white w-full shadow sidebar-position">
             <div className="space-y-1 pt-2 pb-4">
               {data.map((item, i) => (
-                <Disclosure.Button
-                  as="a"
-                  href="#"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                <NavLink
+                  to={`/category/${item}`}
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
-                  {item}
-                </Disclosure.Button>
+                  <Disclosure.Button
+                    as="a"
+                    href="#"
+                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    {item}
+                  </Disclosure.Button>
+                </NavLink>
               ))}
             </div>
           </Disclosure.Panel>
