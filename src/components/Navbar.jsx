@@ -5,7 +5,6 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
 import imgUrl from "./../assets/icon.jpg";
-import { useParams } from "react-router-dom";
 
 const data = ["coffee", "equipment", "machines"];
 
@@ -14,8 +13,6 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const { categoryId } = useParams();
-
   let activeStyle = {
     opacity: 0.4,
   };

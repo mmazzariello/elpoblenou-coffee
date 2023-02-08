@@ -5,7 +5,7 @@ import ItemCount from "./ItemCount";
 
 const Item = ({ id, image, name, stock, price, category }) => {
   return (
-    <NavLink to={`item/${id}`}>
+    <NavLink to={`/item/${id}`}>
       <div
         key={id}
         className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
