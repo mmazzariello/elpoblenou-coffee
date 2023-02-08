@@ -1,112 +1,51 @@
-import React from "react";
-import { Tab } from "@headlessui/react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-const product = {
-  name: "Zip Tote Basket",
-  price: "$140",
-  rating: 4,
-  images: [
-    {
-      id: 1,
-      name: "Angled view",
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg",
-      alt: "Angled front view with bag zipped and handles upright.",
-    },
-    // More images...
-  ],
-  description: `
-    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-  `,
-  details: [
-    {
-      name: "Features",
-      items: [
-        "Multiple strap configurations",
-        "Spacious interior with top zip",
-        "Leather handle and tabs",
-        "Interior dividers",
-        "Stainless strap loops",
-        "Double stitched construction",
-        "Water-resistant",
-      ],
-    },
-    // More sections...
-  ],
-};
+import { products, showProducts } from "../modules/utils";
+import ItemCount from "./ItemCount";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function ItemDetailContainer() {
+  const [productItem, setProductItem] = useState([]);
+
   const { id } = useParams();
 
-  console.log("id", id);
-
-  console.log("details", id);
+  useEffect(() => {
+    showProducts(products)
+      .then((res) => {
+        res.map((item) => {
+          const itemId = item.id;
+          itemId === +id ? setProductItem(item) : null;
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
-          {/* Image gallery */}
-          <Tab.Group as="div" className="flex flex-col-reverse">
-            {/* Image selector */}
-            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
-              <Tab.List className="grid grid-cols-4 gap-6">
-                {product.images.map((image) => (
-                  <Tab
-                    key={image.id}
-                    className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
-                  >
-                    {({ selected }) => (
-                      <>
-                        <span className="sr-only"> {image.name} </span>
-                        <span className="absolute inset-0 overflow-hidden rounded-md">
-                          <img
-                            src={image.src}
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </span>
-                        <span
-                          className={classNames(
-                            selected ? "ring-indigo-500" : "ring-transparent",
-                            "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
-                          )}
-                          aria-hidden="true"
-                        />
-                      </>
-                    )}
-                  </Tab>
-                ))}
-              </Tab.List>
-            </div>
+          <div className="aspect-w-1 aspect-h-1 w-full">
+            <img
+              src={productItem.image}
+              alt={productItem.image}
+              className="h-full w-full object-cover object-center sm:rounded-lg"
+            />
+          </div>
 
-            <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
-              {product.images.map((image) => (
-                <Tab.Panel key={image.id}>
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="h-full w-full object-cover object-center sm:rounded-lg"
-                  />
-                </Tab.Panel>
-              ))}
-            </Tab.Panels>
-          </Tab.Group>
-
-          {/* Product info */}
           <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              {product.name}
+              {productItem.name}
             </h1>
 
             <div className="mt-3">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
-                {product.price}
+                {productItem.price}
               </p>
             </div>
 
@@ -115,17 +54,30 @@ export default function ItemDetailContainer() {
 
               <div
                 className="space-y-6 text-base text-gray-700"
-                dangerouslySetInnerHTML={{ __html: product.description }}
+                dangerouslySetInnerHTML={{ __html: productItem.description }}
               />
             </div>
 
+            <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
+              {productItem.stock ? (
+                <p className="mt-1 text-sm text-green-500 text-left">
+                  Stock: {productItem.stock}
+                </p>
+              ) : (
+                <p className="mt-1 text-sm text-red-400 text-left">Sold out</p>
+              )}
+            </div>
+
             <form className="mt-6">
+              <div className="flex flex-1 flex-col justify-end">
+                <ItemCount stock={productItem.stock} />
+              </div>
               <div className="sm:flex-col1 mt-10 flex">
                 <button
                   type="submit"
-                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-gray-800 py-3 px-8 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                 >
-                  Add to bag
+                  Add to cart
                 </button>
               </div>
             </form>

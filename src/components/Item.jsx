@@ -21,7 +21,7 @@ const Item = ({ id, image, name, stock, price, category }) => {
           </div>
           <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
             <p className="mt-1 text-sm text-gray-500 text-left">
-              Category: {category}
+              Category: {category[0].toUpperCase() + category.substring(1)}
             </p>
             {stock ? (
               <p className="mt-1 text-sm text-green-500 text-left">

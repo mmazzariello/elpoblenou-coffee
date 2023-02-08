@@ -7,7 +7,7 @@ import CartWidget from "./CartWidget";
 import imgUrl from "./../assets/icon.jpg";
 import { useParams } from "react-router-dom";
 
-const data = ["Coffee", "Equipment", "Machines"];
+const data = ["coffee", "equipment", "machines"];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -71,7 +71,7 @@ export default function Navbar() {
                         hover:border-gray-300
                         hover:text-gray-700"
                       >
-                        {item}
+                        {item[0].toUpperCase() + item.substring(1)}
                       </div>
                     </NavLink>
                   ))}
