@@ -1,7 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from "@chakra-ui/react";
-import ItemCount from "./ItemCount";
 
 const Item = ({ id, image, name, stock, price, category }) => {
   return (

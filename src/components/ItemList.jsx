@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Item from "./Item";
 
 const ItemList = ({ products }) => {
