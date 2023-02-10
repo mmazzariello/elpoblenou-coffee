@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Box, Flex, Button } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 
 const ItemCount = ({ stock }) => {
   const [count, setCount] = useState(0);
-
-  console.log("stock", stock);
 
   const onAdd = () => {
     setCount(count + 1);
