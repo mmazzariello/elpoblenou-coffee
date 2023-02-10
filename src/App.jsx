@@ -19,7 +19,7 @@ function App() {
             }
           />
           <Route
-            path="/category/:category"
+            path="/category/:id"
             element={
               <ItemListContainer greeting="Specialty coffee in just one click" />
             }

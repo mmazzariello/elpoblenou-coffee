@@ -31,21 +31,6 @@ const Item = ({ id, image, name, stock, price, category }) => {
               <p className="mt-1 text-sm text-red-400 text-left">Sold out</p>
             )}
           </div>
-          {/* <div className="flex flex-1 flex-col justify-end">
-          <ItemCount stock={stock} />
-        </div> */}
-          {/* <div className="mt-6">
-          <Button
-            backgroundColor={"gray.50"}
-            fontSize="sm"
-            width="100%"
-            borderRadius="3xl"
-            className="mt-4"
-            // isDisabled={stock === 0}
-          >
-            Details
-          </Button>
-        </div> */}
         </div>
       </div>
     </NavLink>

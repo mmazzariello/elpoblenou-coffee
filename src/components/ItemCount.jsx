@@ -8,7 +8,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     <Flex
       justify="space-around"
       align="center"
-      w="100%"
+      w="50%"
       my="2"
       border="1px"
       borderColor="gray.200"

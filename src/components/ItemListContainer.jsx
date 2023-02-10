@@ -6,7 +6,7 @@ import { products, showProducts } from "../modules/utils";
 
 const ItemListContainer = ({ greeting }) => {
   const [productsList, setProductsList] = useState([]);
-  const { category } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     showProducts(products)
@@ -25,7 +25,7 @@ const ItemListContainer = ({ greeting }) => {
       });
   }, []);
 
-  if (category === undefined) {
+  if (id === undefined) {
     return (
       <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
         <Text fontSize="lg" color="gray.800">
@@ -36,7 +36,7 @@ const ItemListContainer = ({ greeting }) => {
     );
   } else {
     const categoriesFilter = products.filter(
-      (product) => product.category === category
+      (product) => product.category === id
     );
 
     return (
