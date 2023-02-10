@@ -38,3 +38,19 @@ body {
 .test {
   border: 2px solid red;
 }
+
+.container-item {
+  height: 450px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .container-item {
+    height: 390px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container-item {
+    height: 500px;
+  }
+}

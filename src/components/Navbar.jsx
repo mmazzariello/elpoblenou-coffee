@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
 import imgUrl from "./../assets/icon.jpg";
 
-const data = ["coffee", "equipment", "machines"];
+const data = ["coffee", "mugs", "kettles"];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

@@ -8,7 +8,7 @@ const Item = ({ id, image, name, stock, price, category }) => {
     <NavLink to={`/item/${id}`}>
       <div
         key={id}
-        className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
+        className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white container-item"
       >
         <img
           src={image}
