@@ -11,13 +11,6 @@ const ItemListContainer = ({ greeting }) => {
   useEffect(() => {
     showProducts(products)
       .then((res) => {
-        console.log("res", res);
-        console.log(
-          "res",
-          res.map((item) => {
-            console.log("item", item.id);
-          })
-        );
         setProductsList(res);
       })
       .catch((err) => {
