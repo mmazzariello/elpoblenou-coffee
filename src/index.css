@@ -43,6 +43,19 @@ body {
   height: 450px;
 }
 
+.container-spinner {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container-item {
     height: 390px;

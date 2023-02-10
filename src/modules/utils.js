@@ -7,7 +7,7 @@ export const products = [
       "Finca El Progreso is located in Vereda El Caramelo, Palestina municipality outside of the city of Pitalito. The farm belongs to Rodrigo Sanchez Valencia and Claudia Samboni and is special because it is where the Sanchez Valencia family was born and raised! This expressive coffee entranced us with notes of caramel, apples, and bergamot tea.",
     category: "coffee",
     price: "20€",
-    stock: 2,
+    stock: 12,
   },
   {
     id: 15,
@@ -17,7 +17,7 @@ export const products = [
       "Introducing Carter Everywhere Mug, a travel tumbler finally worthy of the coffee inside. Designed to amplify the senses and engineered to fit the most popular manual brewing devices, you can now enjoy coffee at its fullest, everywhere. Not dishwasher safe.",
     category: "mugs",
     price: "10€",
-    stock: 2,
+    stock: 0,
   },
   {
     id: 8,
@@ -27,7 +27,7 @@ export const products = [
       "Whether you're a world brewing champion or a brewing beginner, Stagg EKG will be your countertop partner in the pursuit of a ridiculously good cup of coffee. With variable temperature control, 1200 watts for a quick heat time, and a world of features for ultimate control, this is the pour-over kettle perfected.",
     category: "kettles",
     price: "195€",
-    stock: 2,
+    stock: 7,
   },
   {
     id: 2,
@@ -57,7 +57,7 @@ export const products = [
       "Producer Tariku Mengesha manages several small farms around the kebele of Chelchele in Ethiopia’s famed Yirgacheffe region. Grown at some of the highest elevations, this naturally processed lot is packed with berries notes. Duck Rabbit noted berry hard candies, floral blueberry, banana, and an orange citric acidity. We tasted sweet berries, cherry, jasmine, crème brûlée, with a lemon acidity and a silky body.",
     category: "coffee",
     price: "10€",
-    stock: 2,
+    stock: 3,
   },
   {
     id: 6,
@@ -67,7 +67,7 @@ export const products = [
       "Whether you're a world brewing champion or a brewing beginner, Stagg EKG will be your countertop partner in the pursuit of a ridiculously good cup of coffee. With variable temperature control, 1200 watts for a quick heat time, and a world of features for ultimate control, this is the pour-over kettle perfected.",
     category: "kettles",
     price: "195€",
-    stock: 2,
+    stock: 5,
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ export const products = [
       "Meet Carter Move Mug, a travel mug finally worthy of the coffee inside. Designed to amplify the senses and engineered to fit your travel needs with a snap-in splash guard and slim width, you can now enjoy coffee at its fullest on-the-go.",
     category: "mugs",
     price: "30€",
-    stock: 2,
+    stock: 20,
   },
   {
     id: 7,
@@ -97,7 +97,7 @@ export const products = [
       "We took what we do best, and made it better. Introducing Stagg EKG Pro, a game-changing evolution to our signature pour-over kettle. With fully customizable brew settings, precision temperature and pouring control, and access to powerful updates over WiFi, it’s time to go Pro.",
     category: "kettles",
     price: "210€",
-    stock: 2,
+    stock: 1,
   },
   {
     id: 4,
@@ -107,7 +107,7 @@ export const products = [
       "The coffee for dynamite drip. We tasted chocolate with a slight fruit aftertaste: comforting and highly approachable. It’s both a fantastic introduction to specialty coffee and an everyday drinker for the already initiated. If you’re looking to craft your latte art, this makes a sublime base for milk drinks. We were going to brew this as a pour-over too, but the espresso was so good we had to stop right there. May return to pour-over later.",
     category: "coffee",
     price: "15€",
-    stock: 2,
+    stock: 8,
   },
   {
     id: 9,
@@ -116,8 +116,8 @@ export const products = [
     description:
       "Whether you're a world brewing champion or a brewing beginner, Stagg EKG will be your countertop partner in the pursuit of a ridiculously good cup of coffee. With variable temperature control, 1200 watts for a quick heat time, and a world of features for ultimate control, this is the pour-over kettle perfected.",
     category: "kettles",
-    price: "10€",
-    stock: 2,
+    price: "190€",
+    stock: 16,
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ export const products = [
       "The mug that will make you wonder why every takeout cafe cup isn’t built this way. Our game-changing design features a 360° Sip Lid, allowing you to drink confidently from every angle. With ceramic coating and an open top for aroma access, it covers all your sensory bases while leaving one hand free for mess-free multitasking.",
     category: "mugs",
     price: "22€",
-    stock: 2,
+    stock: 15,
   },
   {
     id: 11,
@@ -137,7 +137,7 @@ export const products = [
       "Meet Carter Move Mug, a travel mug finally worthy of the coffee inside. Designed to amplify the senses and engineered to fit your travel needs with a snap-in splash guard and slim width, you can now enjoy coffee at its fullest on-the-go.",
     category: "mugs",
     price: "30€",
-    stock: 2,
+    stock: 12,
   },
 ];
 

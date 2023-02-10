@@ -6,6 +6,7 @@ import { products, showProducts } from "../modules/utils";
 
 const ItemListContainer = ({ greeting }) => {
   const [productsList, setProductsList] = useState([]);
+
   const { id } = useParams();
 
   useEffect(() => {
