@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "@chakra-ui/react";
 import ItemCount from "./ItemCount";
+import { CartContext } from "../context/CartContext";
 
 const ItemDetail = ({ productItem }) => {
-  console.log("productItem", productItem);
-
   const [count, setCount] = useState(0);
+  const { clear, removeItem, addToCart, cartList, setCartList } =
+    useContext(CartContext);
 
   const onAdd = () => {
     setCount(count + 1);
@@ -74,8 +75,11 @@ const ItemDetail = ({ productItem }) => {
                   border="1px"
                   borderColor={"gray.200"}
                   borderRadius="3xl"
-                  isDisabled={productItem.stock === 0}
+                  isDisabled={productItem.stock === 0 || count === 0}
                   w="50%"
+                  onClick={() =>
+                    addToCart({ item: productItem, quantity: count })
+                  }
                 >
                   Add to cart
                 </Button>
