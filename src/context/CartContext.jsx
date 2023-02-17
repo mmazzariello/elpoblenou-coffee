@@ -6,10 +6,8 @@ const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
 
   const addToCart = ({ item, quantity }) => {
-    return setCartList({ item, quantity });
+    return setCartList([...cartList, { item, quantity }]);
   };
-
-  console.log("cartList", cartList);
 
   const clear = () => {
     setCartList({});
