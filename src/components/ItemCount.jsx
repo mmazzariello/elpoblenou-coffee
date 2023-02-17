@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import { Flex, Button } from "@chakra-ui/react";
 
-const ItemCount = ({ stock }) => {
-  const [count, setCount] = useState(0);
-
-  const onAdd = () => {
-    setCount(count + 1);
-  };
-
-  const onSubtract = () => {
-    setCount(count - 1);
-  };
-
+const ItemCount = ({ stock, onAdd, onSubtract, count }) => {
   return (
     <Flex
       justify="space-around"
@@ -28,7 +18,7 @@ const ItemCount = ({ stock }) => {
         color={"gray.700"}
         mx="4"
         isDisabled={count === 0}
-        onClick={onSubtract}
+        onClick={() => onSubtract()}
       >
         -
       </Button>
@@ -39,7 +29,7 @@ const ItemCount = ({ stock }) => {
         color={"gray.700"}
         mx="4"
         isDisabled={stock === 0 || count === stock}
-        onClick={onAdd}
+        onClick={() => onAdd()}
       >
         +
       </Button>

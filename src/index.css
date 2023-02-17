@@ -56,6 +56,19 @@ body {
   top: 50%;
 }
 
+.container-frontPage {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  background-color: #c1dbd2;
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.home-img {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container-item {
     height: 390px;
@@ -65,5 +78,18 @@ body {
 @media screen and (min-width: 1024px) {
   .container-item {
     height: 500px;
+  }
+
+  .container-frontPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 32px;
+    margin-top: 20px;
+    font-size: 38px;
+  }
+
+  .home-img {
+    width: 50%;
   }
 }

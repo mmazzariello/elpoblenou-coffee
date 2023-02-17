@@ -5,6 +5,16 @@ import ItemCount from "./ItemCount";
 const ItemDetail = ({ productItem }) => {
   console.log("productItem", productItem);
 
+  const [count, setCount] = useState(0);
+
+  const onAdd = () => {
+    setCount(count + 1);
+  };
+
+  const onSubtract = () => {
+    setCount(count - 1);
+  };
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-6 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -50,7 +60,12 @@ const ItemDetail = ({ productItem }) => {
 
             <form className="mt-2">
               <div className="sm:flex-col1 mt-4 flex justify-around items-center">
-                <ItemCount stock={productItem.stock} />
+                <ItemCount
+                  stock={productItem.stock}
+                  onAdd={onAdd}
+                  onSubtract={onSubtract}
+                  count={count}
+                />
                 <Button
                   as="button"
                   colorScheme="transparent"
