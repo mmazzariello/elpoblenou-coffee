@@ -84,6 +84,10 @@ body {
   width: 100%;
 }
 
+.input {
+  line-height: 2.25rem !important;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .container-item {
     height: 390px;

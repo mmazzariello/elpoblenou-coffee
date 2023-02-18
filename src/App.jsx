@@ -14,19 +14,8 @@ function App() {
         <Box style={{ height: "100%" }}>
           <Navbar />
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <ItemListContainer greeting="Specialty coffee in just one click" />
-              }
-            />
-            <Route
-              path="/category/:id"
-              element={
-                <ItemListContainer greeting="Specialty coffee in just one click" />
-              }
-            />
+            <Route exact path="/" element={<ItemListContainer />} />
+            <Route path="/category/:id" element={<ItemListContainer />} />
             <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>

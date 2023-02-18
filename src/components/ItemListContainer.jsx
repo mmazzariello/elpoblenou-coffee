@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { products, showProducts } from "../modules/utils";
 import imgUrl from "./../assets/home.png";
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,9 +28,6 @@ const ItemListContainer = ({ greeting }) => {
   if (id === undefined) {
     return (
       <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
-        <Text fontSize="lg" color="gray.800">
-          {greeting}
-        </Text>
         <Box className="container-frontPage">
           <Box className="container-frontText">
             <Text>Make every morning better with good coffee.</Text>
@@ -53,9 +50,6 @@ const ItemListContainer = ({ greeting }) => {
 
     return (
       <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
-        <Text fontSize="lg" color="gray.800">
-          {greeting}
-        </Text>
         {categoriesFilter ? (
           <ItemList products={categoriesFilter} />
         ) : (
