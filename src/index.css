@@ -51,6 +51,11 @@ body {
   position: relative;
 }
 
+.spinner-home {
+  position: absolute;
+  top: 5%;
+}
+
 .spinner {
   position: absolute;
   top: 50%;
@@ -60,12 +65,22 @@ body {
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
-  background-color: #c1dbd2;
+  background-color: #99aea7;
   margin-top: 20px;
-  font-size: 22px;
+  border-radius: 8px;
 }
 
 .home-img {
+  width: 100%;
+}
+
+.container-frontText {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 10px 70px;
+  color: #fff;
+  font-weight: bold;
   width: 100%;
 }
 
@@ -83,13 +98,18 @@ body {
   .container-frontPage {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 32px;
+    justify-content: space-around;
+    padding: 32px 0px;
     margin-top: 20px;
-    font-size: 38px;
   }
 
   .home-img {
     width: 50%;
+  }
+
+  .container-frontText {
+    font-size: 38px;
+    padding: 0px 30px;
+    width: 40%;
   }
 }
