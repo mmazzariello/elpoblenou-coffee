@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { Image, Box } from "@chakra-ui/react";
+import { Image, Box, Flex, Text } from "@chakra-ui/react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
@@ -17,7 +17,9 @@ export default function Navbar() {
   const { clear, removeItem, addToCart, cartList, setCartList } =
     useContext(CartContext);
 
-  console.log("cartListNav", cartList);
+  const showCartQuantity = () => {
+    return cartList.reduce((sum, prod) => sum + prod.quantity, 0);
+  };
 
   let activeStyle = {
     opacity: 0.4,
@@ -86,7 +88,14 @@ export default function Navbar() {
                   className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <NavLink to="/cart">
-                    <CartWidget />
+                    <Flex>
+                      <CartWidget />
+                      {showCartQuantity() !== 0 ? (
+                        <Text fontSize="sm" as="b" color="green.400">
+                          {showCartQuantity()}
+                        </Text>
+                      ) : null}
+                    </Flex>
                   </NavLink>
                 </button>
               </div>
