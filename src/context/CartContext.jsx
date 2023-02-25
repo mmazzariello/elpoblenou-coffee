@@ -28,6 +28,14 @@ const CartContextProvider = ({ children }) => {
     });
 
     setCartList(newCartList);
+    JSON.stringify(newCartList);
+
+    console.log(newCartList.length);
+
+    if (newCartList.length === 0) {
+      clear();
+      window.localStorage.setItem("cartListInLS", JSON.stringify(newCartList));
+    }
   };
 
   //actualizar el stock?
