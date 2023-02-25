@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { CartContext } from "../context/CartContext";
 
 const products = [
   {
@@ -50,6 +51,10 @@ export default function Cart() {
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
     deliveryMethods[0]
   );
+  const { clear, removeItem, addToCart, cartList, setCartList } =
+    useContext(CartContext);
+
+  console.log("cartListCart", cartList);
 
   return (
     <div className="bg-gray-50">

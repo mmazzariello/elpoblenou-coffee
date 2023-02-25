@@ -3,11 +3,21 @@ import { createContext } from "react";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-  const [cartList, setCartList] = useState([]);
+  const [cartList, setCartList] = useState(
+    JSON.parse(window.localStorage.getItem("cartListInLS") || "[]")
+  );
 
   const addToCart = ({ item, quantity }) => {
-    return setCartList([...cartList, { item, quantity }]);
+    const updatedCartList = [...cartList, { item, quantity }];
+
+    setCartList(updatedCartList);
+    window.localStorage.setItem(
+      "cartListInLS",
+      JSON.stringify(updatedCartList)
+    );
   };
+
+  console.log("cartList", cartList);
 
   const clear = () => {
     setCartList({});

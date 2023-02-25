@@ -27,7 +27,7 @@ const ItemListContainer = () => {
 
   if (id === undefined) {
     return (
-      <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
+      <Box px={["4", "4", "6"]} py={["4", "4", "6"]} textAlign="center">
         <Box className="container-frontPage">
           <Box className="container-frontText">
             <Text>Make every morning better with good coffee.</Text>
@@ -49,7 +49,7 @@ const ItemListContainer = () => {
     );
 
     return (
-      <Box py={["8", "8", "12"]} px={["4", "4", "6"]} textAlign="center">
+      <Box px={["4", "4", "6"]} textAlign="center">
         {categoriesFilter ? (
           <ItemList products={categoriesFilter} />
         ) : (

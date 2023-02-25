@@ -18,7 +18,7 @@ const ItemDetail = ({ productItem }) => {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl py-6 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
           <div className="aspect-w-1 aspect-h-1 w-full">
             <img
