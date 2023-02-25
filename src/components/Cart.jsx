@@ -54,8 +54,6 @@ export default function Cart() {
   const { clear, removeItem, addToCart, cartList, setCartList } =
     useContext(CartContext);
 
-  console.log("cartListCart", cartList);
-
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -466,12 +464,12 @@ export default function Cart() {
             <div className="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm">
               <h3 className="sr-only">Items in your cart</h3>
               <ul role="list" className="divide-y divide-gray-200">
-                {products.map((product) => (
-                  <li key={product.id} className="flex py-6 px-4 sm:px-6">
+                {cartList.map((item) => (
+                  <li key={item.item.id} className="flex py-6 px-4 sm:px-6">
                     <div className="flex-shrink-0">
                       <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
+                        src={item.item.image}
+                        alt={item.item.image}
                         className="w-20 rounded-md"
                       />
                     </div>
@@ -481,18 +479,13 @@ export default function Cart() {
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
                             <a
-                              href={product.href}
+                              // href={product.href}
+                              href=""
                               className="font-medium text-gray-700 hover:text-gray-800"
                             >
-                              {product.title}
+                              {item.item.name}
                             </a>
                           </h4>
-                          <p className="mt-1 text-sm text-gray-500">
-                            {product.color}
-                          </p>
-                          <p className="mt-1 text-sm text-gray-500">
-                            {product.size}
-                          </p>
                         </div>
 
                         <div className="ml-4 flow-root flex-shrink-0">
@@ -501,34 +494,24 @@ export default function Cart() {
                             className="-m-2.5 flex items-center justify-center bg-white p-2.5 text-gray-400 hover:text-gray-500"
                           >
                             <span className="sr-only">Remove</span>
-                            <TrashIcon className="h-5 w-5" aria-hidden="true" />
+                            <TrashIcon
+                              className="h-5 w-5"
+                              aria-hidden="true"
+                              onClick={() => removeItem(item.item.id)}
+                            />
                           </button>
                         </div>
                       </div>
 
                       <div className="flex flex-1 items-end justify-between pt-2">
                         <p className="mt-1 text-sm font-medium text-gray-900">
-                          {product.price}
+                          {item.item.price}
                         </p>
 
                         <div className="ml-4">
-                          <label htmlFor="quantity" className="sr-only">
-                            Quantity
-                          </label>
-                          <select
-                            id="quantity"
-                            name="quantity"
-                            className="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm input"
-                          >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                            <option value={6}>6</option>
-                            <option value={7}>7</option>
-                            <option value={8}>8</option>
-                          </select>
+                          <p className="mt-1 text-sm font-medium text-gray-900">
+                            {item.quantity}
+                          </p>
                         </div>
                       </div>
                     </div>

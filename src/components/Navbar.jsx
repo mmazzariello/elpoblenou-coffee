@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Image, Box } from "@chakra-ui/react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import CartWidget from "./CartWidget";
 import imgUrl from "./../assets/icon.jpg";
+import { CartContext } from "../context/CartContext";
 
 const data = ["coffee", "mugs", "kettles"];
 
@@ -13,6 +14,11 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { clear, removeItem, addToCart, cartList, setCartList } =
+    useContext(CartContext);
+
+  console.log("cartListNav", cartList);
+
   let activeStyle = {
     opacity: 0.4,
   };

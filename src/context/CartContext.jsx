@@ -11,21 +11,25 @@ const CartContextProvider = ({ children }) => {
     const updatedCartList = [...cartList, { item, quantity }];
 
     setCartList(updatedCartList);
+    console.log("updated", typeof updatedCartList);
     window.localStorage.setItem(
       "cartListInLS",
       JSON.stringify(updatedCartList)
     );
   };
 
-  console.log("cartList", cartList);
-
   const clear = () => {
-    setCartList({});
+    setCartList([]);
   };
 
-  const removeItem = (itemId) => {};
+  const removeItem = (itemId) => {
+    const newCartList = cartList.filter((list) => {
+      return list.item.id !== itemId;
+    });
 
-  // isInCart: (id) => true|false
+    setCartList(newCartList);
+  };
+
   //actualizar el stock?
 
   return (
