@@ -11,7 +11,6 @@ const CartContextProvider = ({ children }) => {
     const updatedCartList = [...cartList, { item, quantity }];
 
     setCartList(updatedCartList);
-    console.log("updated", typeof updatedCartList);
     window.localStorage.setItem(
       "cartListInLS",
       JSON.stringify(updatedCartList)
@@ -27,10 +26,9 @@ const CartContextProvider = ({ children }) => {
       return list.item.id !== itemId;
     });
 
-    setCartList(newCartList);
-    JSON.stringify(newCartList);
-
     console.log(newCartList.length);
+    setCartList(newCartList);
+    window.localStorage.setItem("cartListInLS", JSON.stringify(newCartList));
 
     if (newCartList.length === 0) {
       clear();

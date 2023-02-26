@@ -12,8 +12,6 @@ export default function ItemDetailContainer() {
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("productItem", productItem);
-
   const { id } = useParams();
 
   const getItem = () => {
@@ -33,7 +31,6 @@ export default function ItemDetailContainer() {
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err);
       });
   };
 

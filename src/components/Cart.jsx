@@ -51,8 +51,9 @@ export default function Cart() {
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
     deliveryMethods[0]
   );
-  const { clear, removeItem, addToCart, cartList, setCartList } =
-    useContext(CartContext);
+  const { removeItem, cartList } = useContext(CartContext);
+
+  console.log("cartList", cartList);
 
   return (
     <div className="bg-gray-50">
