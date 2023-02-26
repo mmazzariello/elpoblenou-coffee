@@ -26,7 +26,6 @@ const CartContextProvider = ({ children }) => {
       return list.item.id !== itemId;
     });
 
-    console.log(newCartList.length);
     setCartList(newCartList);
     window.localStorage.setItem("cartListInLS", JSON.stringify(newCartList));
 

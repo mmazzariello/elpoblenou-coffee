@@ -11,13 +11,11 @@ const ItemListContainer = () => {
 
   const { id } = useParams();
 
-  useEffect(() => {
+  const getItems = () => {
     const db = getFirestore();
 
     setIsLoading(true);
-
     const itemsCollection = collection(db, "products");
-
     getDocs(itemsCollection)
       .then((snapshot) => {
         const docs = snapshot.docs.map((doc) => doc.data());
@@ -29,6 +27,10 @@ const ItemListContainer = () => {
       .catch((err) => {
         setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    getItems();
   }, []);
 
   if (id === undefined) {
