@@ -16,8 +16,6 @@ export default function ItemDetailContainer() {
 
   const { id } = useParams();
 
-  console.log("id", id);
-
   const getItem = () => {
     const db = getFirestore();
 

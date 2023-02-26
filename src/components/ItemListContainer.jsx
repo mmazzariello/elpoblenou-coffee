@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { Box, Text, Image, Spinner } from "@chakra-ui/react";
 import ItemList from "./ItemList";
-import { useParams } from "react-router-dom";
 import { products, showProducts } from "../modules/utils";
 import imgUrl from "./../assets/home.png";
 
@@ -9,13 +10,21 @@ const ItemListContainer = () => {
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log("productListContainer", productsList);
+
   const { id } = useParams();
 
   useEffect(() => {
+    const db = getFirestore();
+
     setIsLoading(true);
-    showProducts(products)
-      .then((res) => {
-        setProductsList(res);
+
+    const itemsCollection = collection(db, "products");
+
+    getDocs(itemsCollection)
+      .then((snapshot) => {
+        const docs = snapshot.docs.map((doc) => doc.data());
+        setProductsList(docs);
       })
       .finally(() => {
         setIsLoading(false);
@@ -44,7 +53,7 @@ const ItemListContainer = () => {
       </Box>
     );
   } else {
-    const categoriesFilter = products.filter(
+    const categoriesFilter = productsList.filter(
       (product) => product.category === id
     );
 
