@@ -92,4 +92,4 @@ const ItemDetail = ({ productItem }) => {
   );
 };
 
-export default ItemDetail;
+export default React.memo(ItemDetail);
