@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { Box, Text, Image, Spinner } from "@chakra-ui/react";
 import ItemList from "./ItemList";
-import { products, showProducts } from "../modules/utils";
 import imgUrl from "./../assets/home.png";
 
 const ItemListContainer = () => {
