@@ -1,42 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { CartContext } from "../context/CartContext";
 
-const products = [
-  {
-    id: 1,
-    title: "Basic Tee",
-    href: "#",
-    price: "$32.00",
-    color: "Black",
-    size: "Large",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-  },
-  {
-    id: 1,
-    title: "Basic Tee",
-    href: "#",
-    price: "$32.00",
-    color: "Black",
-    size: "Large",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-  },
-  // More products...
-];
-const deliveryMethods = [
-  {
-    id: 1,
-    title: "Standard",
-    turnaround: "4–10 business days",
-    price: "$5.00",
-  },
-  { id: 2, title: "Express", turnaround: "2–5 business days", price: "$16.00" },
-];
 const paymentMethods = [
   { id: "credit-card", title: "Credit card" },
   { id: "paypal", title: "PayPal" },
@@ -48,19 +15,82 @@ function classNames(...classes) {
 }
 
 export default function Cart() {
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
-    deliveryMethods[0]
-  );
+  const [orderId, setOrderId] = useState(null);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [company, setCompany] = useState("");
+  const [address, setAddress] = useState("");
+  const [apartment, setApartment] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [nameOnCard, setNameOnCard] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const { removeItem, cartList } = useContext(CartContext);
 
-  console.log("cartList", cartList);
+  const getOrderProductsInfo = () => {
+    cartList.map((item) => {
+      const itemInfo = item.item.name;
+      const finalPrice =
+        Number(item.item.price.replace("€", "")) * item.quantity;
+
+      return { itemInfo, finalPrice };
+    });
+  };
+
+  const getTotal = () => {
+    const total = cartList.reduce((prevValue, item) => {
+      const itemPrice = Number(item.item.price.replace("€", ""));
+      const itemTotal = itemPrice * item.quantity;
+      return prevValue + itemTotal;
+    }, 0);
+
+    return total;
+  };
+
+  const db = getFirestore();
+  const ordersCollection = collection(db, "orders");
+
+  const order = {
+    buyer: {
+      email,
+      firstName,
+      lastName,
+      company,
+      address,
+      apartment,
+      city,
+      region,
+      postalCode,
+      paymentMethod,
+      cardNumber,
+      nameOnCard,
+      expirationDate,
+      cvc,
+    },
+    items: cartList,
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addDoc(ordersCollection, order).then(({ id }) => setOrderId(id));
+  };
 
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
 
-        <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+        <form
+          className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
+          onSubmit={handleSubmit}
+        >
           <div>
             <div>
               <h2 className="text-lg font-medium text-gray-900">
@@ -81,6 +111,7 @@ export default function Cart() {
                     name="email-address"
                     autoComplete="email"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -106,6 +137,7 @@ export default function Cart() {
                       name="first-name"
                       autoComplete="given-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -124,6 +156,7 @@ export default function Cart() {
                       name="last-name"
                       autoComplete="family-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -141,6 +174,7 @@ export default function Cart() {
                       name="company"
                       id="company"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setCompany(e.target.value)}
                     />
                   </div>
                 </div>
@@ -159,6 +193,7 @@ export default function Cart() {
                       id="address"
                       autoComplete="street-address"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
                 </div>
@@ -176,6 +211,7 @@ export default function Cart() {
                       name="apartment"
                       id="apartment"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setApartment(e.target.value)}
                     />
                   </div>
                 </div>
@@ -194,11 +230,12 @@ export default function Cart() {
                       id="city"
                       autoComplete="address-level2"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
                 </div>
 
-                <div>
+                {/* <div>
                   <label
                     htmlFor="country"
                     className="block text-sm font-medium text-gray-700"
@@ -217,7 +254,7 @@ export default function Cart() {
                       <option>Mexico</option>
                     </select>
                   </div>
-                </div>
+                </div> */}
 
                 <div>
                   <label
@@ -233,6 +270,7 @@ export default function Cart() {
                       id="region"
                       autoComplete="address-level1"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setRegion(e.target.value)}
                     />
                   </div>
                 </div>
@@ -269,80 +307,11 @@ export default function Cart() {
                       id="phone"
                       autoComplete="tel"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setPostalCode(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-10 border-t border-gray-200 pt-10">
-              <RadioGroup
-                value={selectedDeliveryMethod}
-                onChange={setSelectedDeliveryMethod}
-              >
-                <RadioGroup.Label className="text-lg font-medium text-gray-900">
-                  Delivery method
-                </RadioGroup.Label>
-
-                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  {deliveryMethods.map((deliveryMethod) => (
-                    <RadioGroup.Option
-                      key={deliveryMethod.id}
-                      value={deliveryMethod}
-                      className={({ checked, active }) =>
-                        classNames(
-                          checked ? "border-transparent" : "border-gray-300",
-                          active ? "ring-2 ring-indigo-500" : "",
-                          "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
-                        )
-                      }
-                    >
-                      {({ checked, active }) => (
-                        <>
-                          <span className="flex flex-1">
-                            <span className="flex flex-col">
-                              <RadioGroup.Label
-                                as="span"
-                                className="block text-sm font-medium text-gray-900"
-                              >
-                                {deliveryMethod.title}
-                              </RadioGroup.Label>
-                              <RadioGroup.Description
-                                as="span"
-                                className="mt-1 flex items-center text-sm text-gray-500"
-                              >
-                                {deliveryMethod.turnaround}
-                              </RadioGroup.Description>
-                              <RadioGroup.Description
-                                as="span"
-                                className="mt-6 text-sm font-medium text-gray-900"
-                              >
-                                {deliveryMethod.price}
-                              </RadioGroup.Description>
-                            </span>
-                          </span>
-                          {checked ? (
-                            <CheckCircleIcon
-                              className="h-5 w-5 text-indigo-600"
-                              aria-hidden="true"
-                            />
-                          ) : null}
-                          <span
-                            className={classNames(
-                              active ? "border" : "border-2",
-                              checked
-                                ? "border-indigo-500"
-                                : "border-transparent",
-                              "pointer-events-none absolute -inset-px rounded-lg"
-                            )}
-                            aria-hidden="true"
-                          />
-                        </>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </RadioGroup>
             </div>
 
             {/* Payment */}
@@ -368,6 +337,7 @@ export default function Cart() {
                           name="payment-type"
                           type="radio"
                           className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
+                          onChange={(e) => setPaymentMethod(e.target.value)}
                         />
                       )}
 
@@ -397,6 +367,7 @@ export default function Cart() {
                       name="card-number"
                       autoComplete="cc-number"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setCardNumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -415,6 +386,7 @@ export default function Cart() {
                       name="name-on-card"
                       autoComplete="cc-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setNameOnCard(e.target.value)}
                     />
                   </div>
                 </div>
@@ -433,6 +405,7 @@ export default function Cart() {
                       id="expiration-date"
                       autoComplete="cc-exp"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setExpirationDate(e.target.value)}
                     />
                   </div>
                 </div>
@@ -451,6 +424,7 @@ export default function Cart() {
                       id="cvc"
                       autoComplete="csc"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setCvc(e.target.value)}
                     />
                   </div>
                 </div>
@@ -479,13 +453,14 @@ export default function Cart() {
                       <div className="flex">
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
-                            <a
+                            <div
                               // href={product.href}
                               href=""
                               className="font-medium text-gray-700 hover:text-gray-800"
+                              onChange={() => setName(item.item.name)}
                             >
                               {item.item.name}
-                            </a>
+                            </div>
                           </h4>
                         </div>
 
@@ -505,8 +480,18 @@ export default function Cart() {
                       </div>
 
                       <div className="flex flex-1 items-end justify-between pt-2">
-                        <p className="mt-1 text-sm font-medium text-gray-900">
-                          {item.item.price}
+                        <p
+                          className="mt-1 text-sm font-medium text-gray-900"
+                          onChange={() =>
+                            setPrice(
+                              Number(item.item.price.replace("€", "")) *
+                                item.quantity
+                            )
+                          }
+                        >
+                          {Number(item.item.price.replace("€", "")) *
+                            item.quantity}
+                          €
                         </p>
 
                         <div className="ml-4">
@@ -519,23 +504,12 @@ export default function Cart() {
                   </li>
                 ))}
               </ul>
+
               <dl className="space-y-6 border-t border-gray-200 py-6 px-4 sm:px-6">
                 <div className="flex items-center justify-between">
-                  <dt className="text-sm">Subtotal</dt>
-                  <dd className="text-sm font-medium text-gray-900">$64.00</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Shipping</dt>
-                  <dd className="text-sm font-medium text-gray-900">$5.00</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Taxes</dt>
-                  <dd className="text-sm font-medium text-gray-900">$5.52</dd>
-                </div>
-                <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                  <dt className="text-base font-medium">Total</dt>
-                  <dd className="text-base font-medium text-gray-900">
-                    $75.52
+                  <dt className="text-sm">Total</dt>
+                  <dd className="text-sm font-medium text-gray-900">
+                    {getTotal()}€
                   </dd>
                 </div>
               </dl>

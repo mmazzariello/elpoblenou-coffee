@@ -14,8 +14,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const { clear, removeItem, addToCart, cartList, setCartList } =
-    useContext(CartContext);
+  const { cartList } = useContext(CartContext);
 
   const showCartQuantity = () => {
     return cartList.reduce((sum, prod) => sum + prod.quantity, 0);
@@ -91,7 +90,7 @@ export default function Navbar() {
                     <Flex>
                       <CartWidget />
                       {showCartQuantity() !== 0 ? (
-                        <Text fontSize="sm" as="b" color="green.400">
+                        <Text fontSize="sm" as="b" color="red.500">
                           {showCartQuantity()}
                         </Text>
                       ) : null}
