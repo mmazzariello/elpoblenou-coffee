@@ -3,6 +3,7 @@ import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { CartContext } from "../context/CartContext";
+import PurchaseModal from "./PurchaseModal";
 
 const paymentMethods = [
   { id: "credit-card", title: "Credit card" },
@@ -32,17 +33,24 @@ export default function Cart() {
   const [cvc, setCvc] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const { removeItem, cartList } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const getOrderProductsInfo = () => {
-    cartList.map((item) => {
-      const itemInfo = item.item.name;
-      const finalPrice =
-        Number(item.item.price.replace("€", "")) * item.quantity;
+  const {
+    removeItem,
+    cartList,
+    clear,
+    getOrderProductsInfo,
+    itemsInfo,
+    finalPrice,
+  } = useContext(CartContext);
 
-      return { itemInfo, finalPrice };
-    });
-  };
+  console.log("cartListInCart", cartList);
+  console.log("itemInfo", itemsInfo);
+  console.log("finalPrice", finalPrice);
+
+  useEffect(() => {
+    getOrderProductsInfo();
+  }, []);
 
   const getTotal = () => {
     const total = cartList.reduce((prevValue, item) => {
@@ -74,12 +82,14 @@ export default function Cart() {
       expirationDate,
       cvc,
     },
-    items: cartList,
+    items: [itemsInfo],
+    total: finalPrice,
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addDoc(ordersCollection, order).then(({ id }) => setOrderId(id));
+    setIsOpen(true);
   };
 
   return (
@@ -526,6 +536,7 @@ export default function Cart() {
           </div>
         </form>
       </div>
+      {isOpen && <PurchaseModal />}
     </div>
   );
 }
