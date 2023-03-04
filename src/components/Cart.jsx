@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { Button } from "@chakra-ui/react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { useDisclosure } from "@chakra-ui/react";
 import { CartContext } from "../context/CartContext";
 import PurchaseModal from "./PurchaseModal";
 
@@ -33,7 +35,9 @@ export default function Cart() {
   const [cvc, setCvc] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
     removeItem,
@@ -65,6 +69,8 @@ export default function Cart() {
   const db = getFirestore();
   const ordersCollection = collection(db, "orders");
 
+  console.log("::::", itemsInfo);
+
   const order = {
     buyer: {
       email,
@@ -82,14 +88,13 @@ export default function Cart() {
       expirationDate,
       cvc,
     },
-    items: [itemsInfo],
-    total: finalPrice,
+    // items: [itemsInfo],
+    // total: { finalPrice },
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addDoc(ordersCollection, order).then(({ id }) => setOrderId(id));
-    setIsOpen(true);
   };
 
   return (
@@ -244,28 +249,6 @@ export default function Cart() {
                     />
                   </div>
                 </div>
-
-                {/* <div>
-                  <label
-                    htmlFor="country"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Country
-                  </label>
-                  <div className="mt-1">
-                    <select
-                      id="country"
-                      name="country"
-                      autoComplete="country-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </div> */}
-
                 <div>
                   <label
                     htmlFor="region"
@@ -525,18 +508,17 @@ export default function Cart() {
               </dl>
 
               <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                <button
-                  type="submit"
-                  className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                >
+                <Button type="submit" onClick={onOpen}>
                   Confirm order
-                </button>
+                </Button>
               </div>
             </div>
           </div>
         </form>
+        {isOpen && (
+          <PurchaseModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+        )}
       </div>
-      {isOpen && <PurchaseModal />}
     </div>
   );
 }

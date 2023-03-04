@@ -34,6 +34,11 @@ const CartContextProvider = ({ children }) => {
     setCartList([]);
   };
 
+  const clearAll = () => {
+    localStorage.setItem("cartListInLS", JSON.stringify([]));
+    setCartList([]);
+  };
+
   const removeItem = (itemId) => {
     const newCartList = cartList.filter((list) => {
       return list.item.id !== itemId;
@@ -48,8 +53,6 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  //actualizar el stock?
-
   return (
     <CartContext.Provider
       value={{
@@ -59,6 +62,7 @@ const CartContextProvider = ({ children }) => {
         cartList,
         setCartList,
         getOrderProductsInfo,
+        clearAll,
         itemsInfo,
         finalPrice,
       }}
