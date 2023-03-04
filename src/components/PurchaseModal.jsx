@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Modal,
   ModalOverlay,
@@ -10,7 +11,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { CartContext } from "../context/CartContext";
-import history from "../modules/history";
 
 export default function PurchaseModal({ isOpen, onOpen, onClose }) {
   const {
@@ -23,16 +23,16 @@ export default function PurchaseModal({ isOpen, onOpen, onClose }) {
     clearAll,
   } = useContext(CartContext);
 
+  const navigateTo = useNavigate();
+
   console.log("cartListEnModal", cartList);
-  //   console.log("clearAll", clearAll());
 
   const handleClose = () => {
     onClose();
     clearAll();
-    // history.push("/");
+    navigateTo("/");
   };
 
-  //   const { onOpen, onClose } = useDisclosure();
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>

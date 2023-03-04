@@ -507,7 +507,10 @@ export default function Cart() {
                 </div>
               </dl>
 
-              <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+              <div
+                style={{ display: "flex", justifyContent: "flex-end" }}
+                className="border-t border-gray-200 py-6 px-4 sm:px-6"
+              >
                 <Button type="submit" onClick={onOpen}>
                   Confirm order
                 </Button>
