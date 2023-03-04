@@ -22,7 +22,6 @@ export default function Cart() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [company, setCompany] = useState("");
   const [address, setAddress] = useState("");
   const [apartment, setApartment] = useState("");
   const [city, setCity] = useState("");
@@ -76,7 +75,6 @@ export default function Cart() {
       email,
       firstName,
       lastName,
-      company,
       address,
       apartment,
       city,
@@ -125,7 +123,7 @@ export default function Cart() {
                     id="email-address"
                     name="email-address"
                     autoComplete="email"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                    className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
@@ -151,7 +149,7 @@ export default function Cart() {
                       id="first-name"
                       name="first-name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
@@ -170,30 +168,11 @@ export default function Cart() {
                       id="last-name"
                       name="last-name"
                       autoComplete="family-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="company"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Company
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="company"
-                      id="company"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
-                      onChange={(e) => setCompany(e.target.value)}
-                    />
-                  </div>
-                </div>
-
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="address"
@@ -207,7 +186,7 @@ export default function Cart() {
                       name="address"
                       id="address"
                       autoComplete="street-address"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
@@ -225,7 +204,7 @@ export default function Cart() {
                       type="text"
                       name="apartment"
                       id="apartment"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setApartment(e.target.value)}
                     />
                   </div>
@@ -244,7 +223,7 @@ export default function Cart() {
                       name="city"
                       id="city"
                       autoComplete="address-level2"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
@@ -262,7 +241,7 @@ export default function Cart() {
                       name="region"
                       id="region"
                       autoComplete="address-level1"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setRegion(e.target.value)}
                     />
                   </div>
@@ -281,7 +260,7 @@ export default function Cart() {
                       name="postal-code"
                       id="postal-code"
                       autoComplete="postal-code"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                     />
                   </div>
                 </div>
@@ -299,7 +278,7 @@ export default function Cart() {
                       name="phone"
                       id="phone"
                       autoComplete="tel"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setPostalCode(e.target.value)}
                     />
                   </div>
@@ -322,14 +301,14 @@ export default function Cart() {
                           name="payment-type"
                           type="radio"
                           defaultChecked
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
+                          className="px-3 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
                         />
                       ) : (
                         <input
                           id={paymentMethod.id}
                           name="payment-type"
                           type="radio"
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
+                          className="px-3 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
                           onChange={(e) => setPaymentMethod(e.target.value)}
                         />
                       )}
@@ -359,7 +338,7 @@ export default function Cart() {
                       id="card-number"
                       name="card-number"
                       autoComplete="cc-number"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setCardNumber(e.target.value)}
                     />
                   </div>
@@ -378,7 +357,7 @@ export default function Cart() {
                       id="name-on-card"
                       name="name-on-card"
                       autoComplete="cc-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setNameOnCard(e.target.value)}
                     />
                   </div>
@@ -397,7 +376,7 @@ export default function Cart() {
                       name="expiration-date"
                       id="expiration-date"
                       autoComplete="cc-exp"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setExpirationDate(e.target.value)}
                     />
                   </div>
@@ -416,7 +395,7 @@ export default function Cart() {
                       name="cvc"
                       id="cvc"
                       autoComplete="csc"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
                       onChange={(e) => setCvc(e.target.value)}
                     />
                   </div>
@@ -511,15 +490,34 @@ export default function Cart() {
                 style={{ display: "flex", justifyContent: "flex-end" }}
                 className="border-t border-gray-200 py-6 px-4 sm:px-6"
               >
-                <Button type="submit" onClick={onOpen}>
-                  Confirm order
-                </Button>
+                {email &&
+                  firstName &&
+                  lastName &&
+                  address &&
+                  apartment &&
+                  city &&
+                  region &&
+                  postalCode &&
+                  paymentMethod &&
+                  cardNumber &&
+                  nameOnCard &&
+                  expirationDate &&
+                  cvc && (
+                    <Button type="submit" onClick={onOpen}>
+                      Confirm order
+                    </Button>
+                  )}
               </div>
             </div>
           </div>
         </form>
         {isOpen && (
-          <PurchaseModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+          <PurchaseModal
+            isOpen={isOpen}
+            onClose={onClose}
+            onOpen={onOpen}
+            orderId={orderId}
+          />
         )}
       </div>
     </div>
