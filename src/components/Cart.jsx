@@ -34,26 +34,9 @@ export default function Cart() {
   const [cvc, setCvc] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  // const [isOpen, setIsOpen] = useState(false);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const {
-    removeItem,
-    cartList,
-    clear,
-    getOrderProductsInfo,
-    itemsInfo,
-    finalPrice,
-  } = useContext(CartContext);
-
-  console.log("cartListInCart", cartList);
-  console.log("itemInfo", itemsInfo);
-  console.log("finalPrice", finalPrice);
-
-  useEffect(() => {
-    getOrderProductsInfo();
-  }, []);
+  const { removeItem, cartList } = useContext(CartContext);
 
   const getTotal = () => {
     const total = cartList.reduce((prevValue, item) => {
@@ -68,30 +51,47 @@ export default function Cart() {
   const db = getFirestore();
   const ordersCollection = collection(db, "orders");
 
-  console.log("::::", itemsInfo);
+  const getOrderProductsInfo = () => {
+    const initialResult = {
+      buyer: {
+        email,
+        firstName,
+        lastName,
+        address,
+        apartment,
+        city,
+        region,
+        postalCode,
+        paymentMethod,
+        cardNumber,
+        nameOnCard,
+        expirationDate,
+        cvc,
+      },
+      items: [],
+      total: 0,
+    };
 
-  const order = {
-    buyer: {
-      email,
-      firstName,
-      lastName,
-      address,
-      apartment,
-      city,
-      region,
-      postalCode,
-      paymentMethod,
-      cardNumber,
-      nameOnCard,
-      expirationDate,
-      cvc,
-    },
-    // items: [itemsInfo],
-    // total: { finalPrice },
+    const order2use = cartList.reduce((generatedResult, item) => {
+      const itemName = item.item.name;
+      const itemPrice = Number(item.item.price.replace("€", ""));
+      const finalPrice = itemPrice * item.quantity;
+
+      const itemInfo = { name: itemName, price: itemPrice };
+
+      generatedResult.items = generatedResult.items.concat([itemInfo]);
+      generatedResult.total = generatedResult.total + finalPrice;
+
+      return generatedResult;
+    }, initialResult);
+
+    return order2use;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const order = getOrderProductsInfo();
     addDoc(ordersCollection, order).then(({ id }) => setOrderId(id));
   };
 
@@ -495,7 +495,6 @@ export default function Cart() {
                   lastName &&
                   address &&
                   apartment &&
-                  city &&
                   region &&
                   postalCode &&
                   paymentMethod &&

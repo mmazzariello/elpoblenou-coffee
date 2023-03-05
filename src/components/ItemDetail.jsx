@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 
 const ItemDetail = ({ productItem }) => {
   const [count, setCount] = useState(0);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartList } = useContext(CartContext);
 
   const onAdd = () => {
     setCount(count + 1);
@@ -77,7 +77,10 @@ const ItemDetail = ({ productItem }) => {
                   isDisabled={productItem.stock === 0 || count === 0}
                   w="50%"
                   onClick={() =>
-                    addToCart({ item: productItem, quantity: count })
+                    addToCart({
+                      item: productItem,
+                      quantity: count,
+                    })
                   }
                 >
                   Add to cart

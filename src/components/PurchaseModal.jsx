@@ -14,19 +14,9 @@ import {
 import { CartContext } from "../context/CartContext";
 
 export default function PurchaseModal({ isOpen, onOpen, onClose, orderId }) {
-  const {
-    removeItem,
-    cartList,
-    clear,
-    getOrderProductsInfo,
-    itemsInfo,
-    finalPrice,
-    clearAll,
-  } = useContext(CartContext);
+  const { clearAll } = useContext(CartContext);
 
   const navigateTo = useNavigate();
-
-  console.log("cartListEnModal", cartList);
 
   const handleClose = () => {
     onClose();

@@ -6,8 +6,6 @@ const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState(
     JSON.parse(window.localStorage.getItem("cartListInLS") || "[]")
   );
-  const [itemsInfo, setItemsInfo] = useState([]);
-  const [finalPrice, setFinalPrice] = useState("");
 
   const addToCart = ({ item, quantity }) => {
     const updatedCartList = [...cartList, { item, quantity }];
@@ -17,17 +15,6 @@ const CartContextProvider = ({ children }) => {
       "cartListInLS",
       JSON.stringify(updatedCartList)
     );
-  };
-
-  const getOrderProductsInfo = () => {
-    cartList.map((item) => {
-      const itemName = item.item.name;
-      const itemPrice = Number(item.item.price.replace("€", ""));
-      const finalPrice = itemPrice * item.quantity;
-
-      setItemsInfo([{ name: itemName, price: itemPrice }]);
-      setFinalPrice(finalPrice);
-    });
   };
 
   const clear = () => {
@@ -61,10 +48,7 @@ const CartContextProvider = ({ children }) => {
         addToCart,
         cartList,
         setCartList,
-        getOrderProductsInfo,
         clearAll,
-        itemsInfo,
-        finalPrice,
       }}
     >
       {children}
