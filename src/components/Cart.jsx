@@ -488,22 +488,27 @@ export default function Cart() {
                 style={{ display: "flex", justifyContent: "flex-end" }}
                 className="border-t border-gray-200 py-6 px-4 sm:px-6"
               >
-                {email &&
-                  firstName &&
-                  lastName &&
-                  address &&
-                  apartment &&
-                  region &&
-                  postalCode &&
-                  paymentMethod &&
-                  cardNumber &&
-                  nameOnCard &&
-                  expirationDate &&
-                  cvc && (
-                    <Button type="submit" onClick={onOpen}>
-                      Confirm order
-                    </Button>
-                  )}
+                <Button
+                  type="submit"
+                  onClick={onOpen}
+                  isDisabled={
+                    !email ||
+                    !firstName ||
+                    !lastName ||
+                    !address ||
+                    !apartment ||
+                    !city ||
+                    !region ||
+                    !postalCode ||
+                    !paymentMethod ||
+                    !cardNumber ||
+                    !nameOnCard ||
+                    !expirationDate ||
+                    !cvc
+                  }
+                >
+                  Confirm order
+                </Button>
               </div>
             </div>
           </div>

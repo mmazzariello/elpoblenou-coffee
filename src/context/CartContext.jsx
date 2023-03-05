@@ -7,16 +7,6 @@ const CartContextProvider = ({ children }) => {
     JSON.parse(window.localStorage.getItem("cartListInLS") || "[]")
   );
 
-  // const addToCart = ({ item, quantity }) => {
-  //   const updatedCartList = [...cartList, { item, quantity }];
-
-  //   setCartList(updatedCartList);
-  //   window.localStorage.setItem(
-  //     "cartListInLS",
-  //     JSON.stringify(updatedCartList)
-  //   );
-  // };
-
   const addToCart = ({ item, quantity }) => {
     let alredyExitent = false;
     debugger;

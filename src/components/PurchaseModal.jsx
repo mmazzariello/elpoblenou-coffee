@@ -7,7 +7,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Button,
   Text,
 } from "@chakra-ui/react";
@@ -30,7 +29,6 @@ export default function PurchaseModal({ isOpen, onOpen, onClose, orderId }) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Thank you for your order</ModalHeader>
-          <ModalCloseButton />
           <ModalBody>
             <Text>
               We have received your order #{orderId} and it is now being
