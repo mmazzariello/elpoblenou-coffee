@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon, TrashIcon } from "@heroicons/react/20/solid";
+import React, { useContext, useState } from "react";
+import { TrashIcon } from "@heroicons/react/20/solid";
 import { Button } from "@chakra-ui/react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { useDisclosure } from "@chakra-ui/react";
@@ -426,7 +425,6 @@ export default function Cart() {
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
                             <div
-                              // href={product.href}
                               href=""
                               className="font-medium text-gray-700 hover:text-gray-800"
                               onChange={() => setName(item.item.name)}

@@ -7,8 +7,30 @@ const CartContextProvider = ({ children }) => {
     JSON.parse(window.localStorage.getItem("cartListInLS") || "[]")
   );
 
+  // const addToCart = ({ item, quantity }) => {
+  //   const updatedCartList = [...cartList, { item, quantity }];
+
+  //   setCartList(updatedCartList);
+  //   window.localStorage.setItem(
+  //     "cartListInLS",
+  //     JSON.stringify(updatedCartList)
+  //   );
+  // };
+
   const addToCart = ({ item, quantity }) => {
-    const updatedCartList = [...cartList, { item, quantity }];
+    let alredyExitent = false;
+    debugger;
+    let updatedCartList = cartList.map((ci) => {
+      if (ci.item.id === item.id) {
+        alredyExitent = true;
+        return { ...ci, quantity: ci.quantity + quantity };
+      }
+      return ci;
+    });
+
+    if (!alredyExitent) {
+      updatedCartList = [...updatedCartList, { item, quantity }];
+    }
 
     setCartList(updatedCartList);
     window.localStorage.setItem(
