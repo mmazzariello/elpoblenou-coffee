@@ -26,7 +26,7 @@ export default function Cart() {
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [phone, setPhone] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [nameOnCard, setNameOnCard] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
@@ -61,7 +61,7 @@ export default function Cart() {
         city,
         region,
         postalCode,
-        paymentMethod,
+        phone,
         cardNumber,
         nameOnCard,
         expirationDate,
@@ -260,6 +260,7 @@ export default function Cart() {
                       id="postal-code"
                       autoComplete="postal-code"
                       className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
+                      onChange={(e) => setPostalCode(e.target.value)}
                     />
                   </div>
                 </div>
@@ -278,7 +279,7 @@ export default function Cart() {
                       id="phone"
                       autoComplete="tel"
                       className="px-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm input"
-                      onChange={(e) => setPostalCode(e.target.value)}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
                 </div>
@@ -288,40 +289,6 @@ export default function Cart() {
             {/* Payment */}
             <div className="mt-10 border-t border-gray-200 pt-10">
               <h2 className="text-lg font-medium text-gray-900">Payment</h2>
-
-              <fieldset className="mt-4">
-                <legend className="sr-only">Payment type</legend>
-                <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                  {paymentMethods.map((paymentMethod, paymentMethodIdx) => (
-                    <div key={paymentMethod.id} className="flex items-center">
-                      {paymentMethodIdx === 0 ? (
-                        <input
-                          id={paymentMethod.id}
-                          name="payment-type"
-                          type="radio"
-                          defaultChecked
-                          className="px-3 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
-                        />
-                      ) : (
-                        <input
-                          id={paymentMethod.id}
-                          name="payment-type"
-                          type="radio"
-                          className="px-3 h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 input"
-                          onChange={(e) => setPaymentMethod(e.target.value)}
-                        />
-                      )}
-
-                      <label
-                        htmlFor={paymentMethod.id}
-                        className="ml-3 block text-sm font-medium text-gray-700"
-                      >
-                        {paymentMethod.title}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </fieldset>
 
               <div className="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                 <div className="col-span-4">
@@ -500,7 +467,7 @@ export default function Cart() {
                     !city ||
                     !region ||
                     !postalCode ||
-                    !paymentMethod ||
+                    !phone ||
                     !cardNumber ||
                     !nameOnCard ||
                     !expirationDate ||

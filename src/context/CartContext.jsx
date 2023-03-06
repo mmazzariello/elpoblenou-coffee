@@ -9,7 +9,6 @@ const CartContextProvider = ({ children }) => {
 
   const addToCart = ({ item, quantity }) => {
     let alredyExitent = false;
-    debugger;
     let updatedCartList = cartList.map((ci) => {
       if (ci.item.id === item.id) {
         alredyExitent = true;

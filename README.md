@@ -25,7 +25,14 @@ Develop an application for an electronic commerce to sell products.
 
 List of other features outside of the MVPs scope
 
-- Free chat: As a user, I want to be able to generate a chat to agree on crossings or dog trips
+- Login
 - Favourites
 
-# Wireframes
+# Client / Front-end Routes
+
+| Path          | Component           | Behaviour     |
+| :------------ | :------------------ | :------------ |
+| /             | ItemListContainer   | Home Page     |
+| /category/:id | ItemListContainer   | Category Page |
+| /item/:id     | ItemDetailContainer | Show Item     |
+| /cart         | Cart                | Cart          |
