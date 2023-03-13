@@ -18,6 +18,7 @@ Develop an application for an electronic commerce to sell products.
 - Tailwind
 - Chakra UI
 - DB: Firebase
+- Deploy: Vercel
 
 # User Stories
 
